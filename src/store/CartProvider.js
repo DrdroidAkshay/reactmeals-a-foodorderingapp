@@ -72,7 +72,6 @@ const CartProvider = (props) => {
   return (
     <CartContext.Provider value={cartContext}>
       {props.children}
-      {console.log(cartContext.items)}
     </CartContext.Provider>
   );
 };

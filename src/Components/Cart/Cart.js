@@ -13,7 +13,6 @@ const Cart = (props) => {
   };
   const cartItemAddHandler = (item) => {
     CartCtx.addItem({ ...item, amount: 1 });
-    console.log("item", item);
   };
 
   const cartItems = (
@@ -44,7 +43,6 @@ const Cart = (props) => {
         </button>
         {hasitems && <button className={Styles.button}>Order</button>}
       </div>
-      {console.log(CartCtx.items)}
     </Modal>
   );
 };

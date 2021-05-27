@@ -5,8 +5,6 @@ import MealItemForm from "./MealItemForm";
 const MealItem = (props) => {
   const CartCtx = useContext(CartContext);
   const AddToCartHandler = (amount) => {
-    console.log("name of meal:", props.mealname);
-
     CartCtx.addItem({
       id: props.id,
       name: props.mealname,
