@@ -32,8 +32,10 @@ import MealItem from "./MealItem";
 
 const AvailableMeals = () => {
   const [meals, setMeals] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     const getavailablemeals = async () => {
+      setIsLoading(true);
       const response = await fetch(
         "https://react-http-d5d4d-default-rtdb.firebaseio.com/meals.json"
       );
@@ -49,6 +51,7 @@ const AvailableMeals = () => {
         });
       }
       setMeals(loadedMeals);
+      setIsLoading(false);
     };
     getavailablemeals();
   }, []);
@@ -64,9 +67,13 @@ const AvailableMeals = () => {
   ));
   return (
     <section className={Styles.meals}>
-      <Card>
-        <ul>{mealslist}</ul>
-      </Card>
+      {isLoading ? (
+        <p className={Styles.mealsLoading}>Loading Meals</p>
+      ) : (
+        <Card>
+          <ul>{mealslist}</ul>
+        </Card>
+      )}
     </section>
   );
 };
