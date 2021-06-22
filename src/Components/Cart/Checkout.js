@@ -59,6 +59,13 @@ const Checkout = (props) => {
       enteredCity,
       enteredPostalCode
     );
+    props.onConfirm({
+      name: enteredName,
+      mobile: enteredMobile,
+      street: enteredStreet,
+      city: enteredCity,
+      postalCode: enteredPostalCode,
+    });
   };
 
   return (

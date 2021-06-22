@@ -19,6 +19,15 @@ const Cart = (props) => {
   const orderHandler = () => {
     setCheckoutisVisible(true);
   };
+  const confirmOrderHandler = (userdata) => {
+    fetch("https://react-http-d5d4d-default-rtdb.firebaseio.com/orders.json", {
+      method: "POST",
+      body: JSON.stringify({
+        user: userdata,
+        orderedItems: CartCtx.items,
+      }),
+    });
+  };
 
   const cartItems = (
     <ul className={Styles["cart-items"]}>
@@ -54,7 +63,9 @@ const Cart = (props) => {
         <span>Total Amount</span>
         <span>{totalAmount}</span>
       </div>
-      {checkoutisVisible && <Checkout onCancel={props.onClose} />}
+      {checkoutisVisible && (
+        <Checkout onConfirm={confirmOrderHandler} onCancel={props.onClose} />
+      )}
       {!checkoutisVisible && modalactions}
     </Modal>
   );
